@@ -219,8 +219,9 @@ select taxonclass, count(*), avg(medlifeexp) from zoo group by taxonclass;
 	-- a) with average median life expectancies less than 15 years
     -- b) with at least 100 animals represented in the class
     -- c) with less than 10 animals represented in the class but average median life expectancies above 10 years
-
-
+select commonname, taxonclass, medlifeexp from zoo  where medlifeexp > 10 group by taxonclass;
+select taxonclass, avg(medlifeexp), count(*) from zoo group by taxonclass having avg(medlifeexp) > 5;
+select taxonclass, count(*), avg(medlifeexp) from zoo group by taxonclass having count(*) < 10 and avg(medlifeexp) > 10;
 # ORDER BY
 -- 18 Return a table with the name, class, and life expectancy ordered...
 	-- low to high on median life expectancy
