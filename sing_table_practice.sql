@@ -211,6 +211,8 @@ select
     -- b) are represented in each taxonomy class?
 select count(*) from zoo where taxonclass = "Mammalia";
 select taxonclass, count(*) from zoo group by taxonclass;
+#one row per group
+#if no function is used, return the first record of that group
 
 -- 16 What is the average median life expectancy in each taxonomy class?
 select taxonclass, count(*), avg(medlifeexp) from zoo group by taxonclass;
@@ -222,12 +224,16 @@ select taxonclass, count(*), avg(medlifeexp) from zoo group by taxonclass;
 select commonname, taxonclass, medlifeexp from zoo  where medlifeexp > 10 group by taxonclass;
 select taxonclass, avg(medlifeexp), count(*) from zoo group by taxonclass having avg(medlifeexp) > 5;
 select taxonclass, count(*), avg(medlifeexp) from zoo group by taxonclass having count(*) < 10 and avg(medlifeexp) > 10;
+#having works on the result of group by
+
 # ORDER BY
 -- 18 Return a table with the name, class, and life expectancy ordered...
 	-- low to high on median life expectancy
     -- high to low on median life expectancy
     -- high to low within taxonomy class
-   
+select commonname, taxonclass, medlifeexp from zoo  where medlifeexp > 10 order by 2 desc;
+select commonname, taxonclass, medlifeexp from zoo  where medlifeexp > 10 order by medlifeexp asc limit 10;
+#default is asc
 
 -- 19 Which 3 animals lives the longest? (Return only those 3 rows using LIMIT clause)
 
