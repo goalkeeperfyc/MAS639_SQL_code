@@ -7,7 +7,8 @@ select
 	right(Date, 4) as year,
     height,
 	left(height, 1),
-    substring(height, 3, 1)
+    substring(height, 3, 3)
+-- The first position in string is 1
 from 
 	playerofweek
 order by 1 desc;

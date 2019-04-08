@@ -265,7 +265,7 @@ having
 # 30 - Calculate the number of speakers worldwide for each language, ordered high to low by number of speakers (30-35 require a JOIN)
 select
     language,
-	sum(population) as total_speakers
+	sum(population * percentage) as total_speakers
 from language
 left join country
 	on language.CountryCode = country.Code
@@ -276,7 +276,7 @@ order by
 # 31 - Return a table that lists each language and number of speakers worldwide, ordered high to low on number of speakers, but only include languages that have > 200,000,000 speakers? 
 select
 	language,
-    sum(population) as total_speakers
+    sum(population * percentage) as total_speakers
 from language
 join country
 	on language.CountryCode = country.Code
@@ -315,14 +315,14 @@ having
 # 34 - What are the 3 most spoken languages worldwide?
 select
 	language,
-    sum(population) as total_population
+    count(Name) as number_of_country
 from language
 join country
 	on language.countrycode = country.Code
 group by
 	language
 order by
-	total_population desc
+	number_of_country desc
 limit 3;
 # 35 What year does this data come from?
 select * from city limit 20;
